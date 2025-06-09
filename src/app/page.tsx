@@ -1,4 +1,4 @@
-import { MovieCarousel } from "@/components/MovieCarousel";
+import { MovieCarousel } from "@/components/Home/MovieCarousel";
 import { Upcoming } from "@/components/Home/UpComing";
 import Image from "next/image";
 import { TopRated } from "@/components/Home/TopRated";
@@ -14,9 +14,8 @@ export default function Home() {
       <div className="w-[80%]">
         <Upcoming />
 
-        
-        <TopRated/>
-        <Popular/>
+        <TopRated />
+        <Popular />
       </div>
     </div>
   );

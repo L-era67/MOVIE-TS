@@ -11,5 +11,5 @@ export const GetUpComing = async () =>{
     );
     const movie =await response.json();
 
-    return movie.results;
+    return movie?.results;
 }

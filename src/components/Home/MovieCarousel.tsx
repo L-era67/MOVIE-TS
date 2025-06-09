@@ -18,6 +18,9 @@ import { Movie } from "@/types";
 
 export const MovieCarousel = () => {
   const [nowPlayingMovie, setNowPlayingMovie] = useState<Movie[]>([]);
+
+  console.log("Movieeee", nowPlayingMovie);
+  
   //   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +28,9 @@ export const MovieCarousel = () => {
       try {
         const NowMovies = await getNowPlayingMovies();
         setNowPlayingMovie(NowMovies);
-        console.log("Movie carousel Item", NowMovies);
+
+        console.log(JSON.stringify(NowMovies, null , 2))
+       
       } catch (error) {
         console.log("PLAY NOW ERROR:", error);
       }
@@ -40,7 +45,7 @@ export const MovieCarousel = () => {
       {/* <div className="w-screen ">{loading && <CarouselLoader/>}</div> */}
 
       <Carousel
-        className="realtive mt-13"
+        className="realtive"
         plugins={[
           Autoplay({
             delay: 4000,
