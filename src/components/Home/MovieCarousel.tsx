@@ -29,7 +29,7 @@ export const MovieCarousel = () => {
         const NowMovies = await getNowPlayingMovies();
         setNowPlayingMovie(NowMovies);
 
-        console.log(JSON.stringify(NowMovies, null , 2))
+        // console.log(JSON.stringify(NowMovies, null , 2))
        
       } catch (error) {
         console.log("PLAY NOW ERROR:", error);

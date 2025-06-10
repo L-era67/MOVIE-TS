@@ -1,6 +1,10 @@
+import { MovieProps } from "@/types";
 import { StarIcon } from "lucide-react";
 
-export const MovieDetailTitle = ({ movieDetail }) => {
+type MovieDeatilProps = {
+  movieDetail: MovieProps;
+};
+export const MovieDetailTitle = ({ movieDetail }: MovieDeatilProps) => {
   console.log("ahah", movieDetail);
 
   const time = movieDetail?.runtime;
@@ -31,7 +35,7 @@ export const MovieDetailTitle = ({ movieDetail }) => {
             /10
           </p>
           <p className="text-[12px] text-muted-foreground">
-            {voteCount? voteCount.toLocaleString(): "No Votes"}
+            {voteCount ? voteCount.toLocaleString() : "No Votes"}
           </p>
         </div>
       </div>
