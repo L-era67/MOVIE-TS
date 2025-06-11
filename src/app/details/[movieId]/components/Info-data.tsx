@@ -1,42 +1,42 @@
-
 import { useEffect, useState } from "react";
 import { StaffInformation } from "./StaffInfo";
-import { Crew, Director, MovieProps, StaffInfo } from "@/types";
+import {  Crew, StaffInfo } from "@/types";
 import { getStaffInfo } from "@/utils/detail/get-staff-infor";
 
-
-export const InfoData = ({ movieId }:{movieId:number}) => {
+export const InfoData = ({ movieId }: { movieId: number }) => {
   //   const [staffData, setStaffData] = useState({});
-  
-  const [director, setDirector] = useState([]);
-  const [writer, setWriter] = useState([]);
-  const [stars, setStars] = useState([]);
 
+  const [director, setDirector] = useState<Crew[]>([]);
+  const [writer, setWriter] = useState<Crew[]>([]);
+  const [stars, setStars] = useState<String[]>([]);
 
   const InfoData = async () => {
     try {
-      const dataIndo:StaffInfo = await getStaffInfo(movieId);
-      console.log("data Info API", dataIndo);
-      
+      const dataInfo: StaffInfo = await getStaffInfo(movieId);
+      console.log("data Info API", dataInfo);
 
-      const directorFilter:Crew[] = dataIndo?.crew?.filter(
+      //Directer
+      const directorFilter = dataInfo?.crew?.filter(
         (info) => info.job === "Director"
       );
       setDirector(directorFilter);
       console.log("DIRECTOR FILTER", directorFilter);
-      
 
-      const writerFilter = dataIndo?.crew?.filter(
+      //WRITER
+      const writerFilter = dataInfo?.crew?.filter(
         (info) => info.department === "Writing"
       );
 
       setWriter(writerFilter);
 
-      const starsFiltered = dataIndo?.cast
+      //ACTOR
+      const starsFiltered = dataInfo?.cast
         ?.slice(0, 3)
         .map((info) => info.name + " • ");
 
       setStars(starsFiltered);
+      console.log("STARS FILTERED", starsFiltered);
+      
     } catch (error) {
       console.log("STAFF INFO ERR!", error);
     }

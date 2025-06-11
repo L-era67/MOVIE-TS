@@ -1,6 +1,4 @@
-
-// import { MovieTrailer } from "../MovieTrailer";
-
+import { MovieTrailer } from "@/components/MovieTrailer";
 import { MovieProps } from "@/types";
 
 export const TrailerDetail = ({ movieDetail }:{movieDetail: MovieProps}) => {
@@ -21,7 +19,7 @@ export const TrailerDetail = ({ movieDetail }:{movieDetail: MovieProps}) => {
 
       <div className="absolute flex items-center top-[80%] left-4 gap-3 md:left-[30vh] lg:left-[40vh] xl:left-[50vh] 2xl:left-[60vh]">
      
-          {/* <MovieTrailer movieId={movieDetail?.id}/> */}
+          <MovieTrailer movieId={movieDetail?.id}/>
       
         <p className="text-white text-[16px]">PLay Trailer 2:35</p>
       </div>

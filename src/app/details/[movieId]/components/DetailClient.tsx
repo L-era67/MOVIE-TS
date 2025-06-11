@@ -7,6 +7,7 @@ import { MovieDetailTitle } from "./MovieDetailRating";
 import { TrailerDetail } from "./DetailTrailer";
 import { GenreDetail } from "./GenreDetail";
 import { InfoData } from "./Info-data";
+import { MoreLikeData } from "./MoreLikeThisData";
 
 export const DetailClient = ({ movieId }: { movieId: number }) => {
   const [movieDetail, setMovieDetail] = useState<MovieProps>({} as MovieProps);
@@ -28,6 +29,7 @@ export const DetailClient = ({ movieId }: { movieId: number }) => {
     };
     FetchMovieDetail();
   }, [movieId]);
+  
 
   return (
     <div>
@@ -44,7 +46,7 @@ export const DetailClient = ({ movieId }: { movieId: number }) => {
 
           <InfoData movieId={movieId} />
 
-          {/* <MoreLikeData movieId={movieId} /> */}
+          <MoreLikeData movieId={movieId} />
         </div>
 
         <div className="w-screen mt-10">{/* <Footer /> */}</div>

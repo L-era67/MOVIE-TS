@@ -11,34 +11,39 @@ import {
 
 import { useEffect, useState } from "react";
 import { MovieCardCarouselItem } from "./MovieCarouselitem";
-import { getNowPlayingMovies } from "@/utils/get-playing-now";
-import { Movie } from "@/types";
+import { getNowPlayingMovies } from "@/utils/home/get-playing-now";
+import { MovieProps } from "@/types";
+import { CarouselLoader } from "../skeletons/CarouselLoader";
 
 // import { CarouselLoader } from "./skeletons/CarouselLoader";
 
 export const MovieCarousel = () => {
-  const [nowPlayingMovie, setNowPlayingMovie] = useState<Movie[]>([]);
-
-  console.log("Movieeee", nowPlayingMovie);
-  
-  //   const [loading, setLoading] = useState(true);
+  const [nowPlayingMovie, setNowPlayingMovie] = useState<MovieProps[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchMoviesPlayNow = async () => {
+      setLoading(true);
+      setError(null);
       try {
         const NowMovies = await getNowPlayingMovies();
         setNowPlayingMovie(NowMovies);
 
         // console.log(JSON.stringify(NowMovies, null , 2))
-       
       } catch (error) {
         console.log("PLAY NOW ERROR:", error);
+      } finally {
+        setLoading(false);
       }
-      //   setLoading(false)
     };
 
     fetchMoviesPlayNow();
   }, []);
+
+  if (loading) {
+    return <CarouselLoader/>
+  }
 
   return (
     <div>
@@ -53,14 +58,10 @@ export const MovieCarousel = () => {
         ]}
       >
         <CarouselContent>
-          {nowPlayingMovie?.slice(0, 5).map((movie, index) => (
+          {!loading && nowPlayingMovie?.slice(0, 5).map((movie, index) => (
             <CarouselItem key={index}>
               <div className="p-1">
-                <MovieCardCarouselItem
-                  movie={movie}
-                  id={movie.id}
-                  // loading={loading}
-                />
+                <MovieCardCarouselItem movie={movie} />
               </div>
             </CarouselItem>
           ))}

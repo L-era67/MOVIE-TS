@@ -1,19 +1,18 @@
-import { Movie } from "@/types";
-import { PlayIcon, StarIcon } from "lucide-react";
+import {  MovieProps } from "@/types";
+import {  StarIcon } from "lucide-react";
 import Link from "next/link";
-// import { MovieTrailer } from "./MovieTrailer";
-import { useState } from "react";
-// import { CarouselLoader } from "./skeletons/CarouselLoader";
+import { MovieTrailer } from "../MovieTrailer";
 
 type MovieCarouselProps = {
-  movie: Movie;
-  id: string;
+  movie: MovieProps;
 };
 
-export const MovieCardCarouselItem = ({ movie, id }: MovieCarouselProps) => {
+export const MovieCardCarouselItem = ({ movie}: MovieCarouselProps) => {
+
+  
   return (
     <div className="md:relative">
-      <Link href={`/details/${id}`}>
+      <Link href={`/details/${movie.id}`}>
         <img
           src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
           alt="CartPLayNow"
@@ -46,7 +45,7 @@ export const MovieCardCarouselItem = ({ movie, id }: MovieCarouselProps) => {
           {movie?.overview}
         </div>
 
-        <div>{/* <MovieTrailer movieId={id} /> */}</div>
+        <div><MovieTrailer movieId={movie.id} /></div>
       </div>
     </div>
   );

@@ -13,8 +13,8 @@ export default function Home() {
 
       <div className="w-[80%]">
         <Upcoming />
-        <TopRated />
         <Popular />
+        <TopRated />
       </div>
     </div>
   );

@@ -3,13 +3,13 @@
 import { ChevronDown, FilmIcon, Moon, Search } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-// import { SearchGenres } from "./Genres/AllGenre";
-// import { Genre } from "./Genres/Genre";
-// import { ModeToggle } from "./modeToggle";
-// import { SearchValue } from "./Seearch/Search";
+
 import { useState } from "react";
 // import { parseAsString, useQueryState } from "nuqs";
 import { useRouter } from "next/router";
+import { ModeToggle } from "./modeToggle";
+import { Genre } from "@/app/genre/components/Genres";
+import { SearchValue } from "./search/search";
 
 export const Header = () => {
 //   const router = useRouter();
@@ -39,9 +39,9 @@ export const Header = () => {
           Genre
         </Button> */}
 
-        {/* <Genre /> */}
+        <Genre />
         <Button variant="outline">
-          {/* <SearchValue /> */}
+          <SearchValue />
 
           {/* <input
             type="text"
@@ -62,7 +62,7 @@ export const Header = () => {
           <Moon className="w-4 h-4" />
         </Button> */}
 
-        {/* <ModeToggle /> */}
+        <ModeToggle />
       </div>
     </div>
   );

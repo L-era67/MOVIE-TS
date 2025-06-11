@@ -1,4 +1,12 @@
-export const StaffInformation = ({ staffDirector, writer, stars }) => {
+import { Crew } from "@/types";
+
+interface StaffType{
+  staffDirector:Crew[],
+  writer: Crew[];
+  stars: strign[];
+}
+
+export const StaffInformation = ({ staffDirector, writer, stars }:StaffType) => {
   return (
     <table className="table-fixed mx-5 w-full">
       <tbody className="border-b border-[#E4E4E7] divide-y w-full">
@@ -23,7 +31,7 @@ export const StaffInformation = ({ staffDirector, writer, stars }) => {
 
         <tr className="text-left">
           <th className="pb-1 pt-5">Writers</th>
-          <td className="flex pl-[53px] gap-1 ">
+          <td className="flex pl-[53px] gap-1 flex-wrap">
             {writer.slice(0, 3).map((info, id) => (
               <p key={id} className="pb-1 pt-5 w-fit ">
                 {info.name} •
