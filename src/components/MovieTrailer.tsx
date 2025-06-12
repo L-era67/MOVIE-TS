@@ -20,7 +20,6 @@ export const MovieTrailer = ({ movieId }: MovieTrailerId) => {
     const getMovieTrailerbyId = async () => {
       try {
         const data = await getMovieTrailer(movieId);
-
         setMovieTrailer(data.results);
       } catch (error) {
         console.log("trailer err!!", error);
@@ -34,7 +33,6 @@ export const MovieTrailer = ({ movieId }: MovieTrailerId) => {
     height: "390",
     width: "640",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
     },
   };

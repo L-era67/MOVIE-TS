@@ -4,7 +4,8 @@ import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { NuqsAdapter } from "nuqs/adapters/next";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "@/components/theme-provider";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

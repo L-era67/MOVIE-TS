@@ -10,7 +10,7 @@ export const MovieCardLoader = () => {
 
 export const SeeMoreLoader = () => {
   return (
-    <div className="grid grid-cols-2 gap-5 mx-auto md:grid-cols-5 ">
+    <div className="grid grid-cols-2 gap-4 md:gap-8 mx-auto md:grid-cols-5 pt-8">
       {new Array(20).fill(null).map((_, index) => (
         <Loader key={index} />
       ))}

@@ -36,10 +36,10 @@ export const Pagination = ({ more, setMorePage, morePage }: PaginationProp) => {
         Previous
       </Button>
       {arr.length > 0 &&
-        arr.map((number) => {
+        arr.map((number, i) => {
           if (morePage + 1 >= number && morePage - 1 < number) {
             return (
-              <Button onClick={() => handleSelect(number)} variant="outline">
+              <Button onClick={() => handleSelect(number)} variant="outline" key={i}>
                 {number}
               </Button>
             );

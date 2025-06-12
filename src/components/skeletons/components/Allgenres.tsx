@@ -1,12 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-import {
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-} from "@radix-ui/react-dropdown-menu";
-
 import { ChevronRight } from "lucide-react";
 
 import {
@@ -18,6 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { getGenre } from "@/utils/get-Genre";
 import { useRouter } from "next/navigation";
+import { DropdownMenuLabel, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
 
  type GenreProps = {
     id: number;
@@ -45,7 +40,6 @@ export const SearchGenres = () => {
   const handleSearchGenre = async () => {
     try {
       const data = await getGenre();
-      console.log("Genre Data:", data.genres);
       const allGen = data.genres || [];
       setAllGenre(allGen);
     } catch (error) {
@@ -79,7 +73,7 @@ export const SearchGenres = () => {
       <DropdownMenuLabel className="pb-5">
         See lists of movies by genre
       </DropdownMenuLabel>
-      <DropdownMenuSeparator />
+      <DropdownMenuSeparator/>
 
       <div className="flex flex-wrap gap-3 pt-5 font-bold">
         {allGenre?.map((genre) => {

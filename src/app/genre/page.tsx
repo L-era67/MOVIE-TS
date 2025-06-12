@@ -1,14 +1,19 @@
-"use client"
+"use client";
 
 import { Pagination } from "@/components/Pagination";
-import { SearchGenres } from "./components/Allgenres";
+import { SearchGenres } from "../../components/skeletons/components/Allgenres";
 import { MovieCard } from "@/components/MovieCard";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Page() {
-    const router = useRouter();
-    console.log("GENRE ID router:", router);
-    
+  const genreSearch = useSearchParams();
+  
+  console.log("genre Search", genreSearch);
+
+  const genreId = genreSearch.get("genreIds");
+
+  console.log("genre ID", genreId);
+
   return (
     <div>
       <div className="lg:pl-20 lg:pr-[300px]">

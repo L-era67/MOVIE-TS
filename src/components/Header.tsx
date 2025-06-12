@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ChevronDown, FilmIcon, Moon, Search } from "lucide-react";
 import { Button } from "./ui/button";
@@ -8,14 +8,14 @@ import { useState } from "react";
 // import { parseAsString, useQueryState } from "nuqs";
 import { useRouter } from "next/router";
 import { ModeToggle } from "./modeToggle";
-import { Genre } from "@/app/genre/components/Genres";
+import { Genre } from "@/components/skeletons/components/Genres";
 import { SearchValue } from "./search/search";
 
 export const Header = () => {
-//   const router = useRouter();
-  
-//    const [searchUrl, setSearchUrl]=useQueryState("search", parseAsString)
-   
+  //   const router = useRouter();
+
+  //    const [searchUrl, setSearchUrl]=useQueryState("search", parseAsString)
+
   // const getSearch=()=>{
   //   router.push(`/search/searchValue?search=${search}`)
   // }
@@ -52,7 +52,6 @@ export const Header = () => {
           {/* <button onClick={() => getSearch()}>
             <Search />
           </button> */}
-          
         </Button>
       </div>
 

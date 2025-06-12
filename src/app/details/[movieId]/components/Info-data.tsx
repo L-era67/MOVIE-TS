@@ -8,7 +8,7 @@ export const InfoData = ({ movieId }: { movieId: number }) => {
 
   const [director, setDirector] = useState<Crew[]>([]);
   const [writer, setWriter] = useState<Crew[]>([]);
-  const [stars, setStars] = useState<String[]>([]);
+  const [stars, setStars] = useState<string[]>([]);
 
   const InfoData = async () => {
     try {
@@ -30,6 +30,7 @@ export const InfoData = ({ movieId }: { movieId: number }) => {
       setWriter(writerFilter);
 
       //ACTOR
+         
       const starsFiltered = dataInfo?.cast
         ?.slice(0, 3)
         .map((info) => info.name + " • ");

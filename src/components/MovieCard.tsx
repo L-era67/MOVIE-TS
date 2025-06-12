@@ -1,10 +1,10 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 import { Image } from "./Image";
-import { Movie } from "@/types";
+import {  MovieProps } from "@/types";
 
 type MovieCardProps = {
-    movie: Movie;
+    movie: MovieProps;
 }
 
 export const MovieCard = ({ movie}:MovieCardProps) => {

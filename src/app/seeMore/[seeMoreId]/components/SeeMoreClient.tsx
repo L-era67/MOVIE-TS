@@ -2,6 +2,7 @@
 
 import { MovieCard } from "@/components/MovieCard";
 import { Pagination } from "@/components/Pagination";
+import { SeeMoreLoader } from "@/components/skeletons/upComingHomeLoader";
 import { MovieResponse } from "@/types";
 import { getCategoryMovie } from "@/utils/get-category";
 import { parseAsInteger, useQueryState } from "nuqs";
@@ -14,14 +15,12 @@ interface SeeMoreClientProps {
 export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
   const [more, setMore] = useState<MovieResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const [morePage, setMorePage] = useQueryState(
     "page",
     parseAsInteger.withDefault(1)
   );
-
-  //   const [loading, setLoading] = useState(true);
-  const categoryListsTitle: string[] = ["Upcoming", "Top Rated", "Popular"];
 
   const moreCat = async () => {
     setError(null);
@@ -32,8 +31,9 @@ export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
     } catch (error) {
       console.log(error);
       setError("Failed to load movies. Please try again.");
+    } finally{
+      setLoading(false)
     }
-    // setLoading(false);
   };
 
   console.log("PAGE NUMBER555", more);
@@ -63,9 +63,9 @@ export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
             (SeeMoreId === "popular" && "Popular") ||
             (SeeMoreId === "top_rated" && "Top rated")}
         </p>
-
+        {loading && <SeeMoreLoader/>}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 py-8 ">
-          {dataMore.map((movie, id) => (
+          {!loading && dataMore.map((movie, id) => (
             <div key={id}>
               <MovieCard movie={movie} />
             </div>

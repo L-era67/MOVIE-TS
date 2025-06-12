@@ -3,7 +3,7 @@ import { Crew } from "@/types";
 interface StaffType{
   staffDirector:Crew[],
   writer: Crew[];
-  stars: strign[];
+  stars: string[];
 }
 
 export const StaffInformation = ({ staffDirector, writer, stars }:StaffType) => {

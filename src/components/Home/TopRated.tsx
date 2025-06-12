@@ -15,6 +15,8 @@ export const TopRated = () => {
 
   useEffect(() => {
     const topRatedMov = async () => {
+      setError(null);
+      setLoading(true)
       try {
         const rated = await GetTopRatedMovies();
         setTopRated(rated);
