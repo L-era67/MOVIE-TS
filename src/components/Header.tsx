@@ -8,7 +8,7 @@ import { useState } from "react";
 // import { parseAsString, useQueryState } from "nuqs";
 import { useRouter } from "next/router";
 import { ModeToggle } from "./modeToggle";
-import { Genre } from "@/components/skeletons/components/Genres";
+import { Genre } from "@/app/genre/components/Genres";
 import { SearchValue } from "./search/search";
 
 export const Header = () => {

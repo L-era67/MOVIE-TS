@@ -2,13 +2,13 @@ import { MovieResponse } from "@/types";
 import { Button } from "./ui/button";
 
 type PaginationProp = {
-  more: MovieResponse;
+  more: MovieResponse ;
   setMorePage: (a: number) => void; //void ni yu ch butsaahgui gesen ug state uurchluh uyd l set Function ajillah uchir;
   morePage: number;
 };
 
 export const Pagination = ({ more, setMorePage, morePage }: PaginationProp) => {
-  const totalPage = more.total_pages;
+  const totalPage = more?.total_pages;
 
   console.log("TOTALPAGEE", totalPage);
 

@@ -1,18 +1,49 @@
 "use client";
 
 import { Pagination } from "@/components/Pagination";
-import { SearchGenres } from "../../components/skeletons/components/Allgenres";
+import { SearchGenres } from "./components/Allgenres";
 import { MovieCard } from "@/components/MovieCard";
+// import { useRouter } from "next/router";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getFilteredGenre } from "@/utils/get-filtered-genre";
+import { MovieResponse } from "@/types";
+import { parseAsInteger, useQueryState } from "nuqs";
 
 export default function Page() {
-  const genreSearch = useSearchParams();
-  
-  console.log("genre Search", genreSearch);
+  // const router = useRouter();
 
-  const genreId = genreSearch.get("genreIds");
+  // const {genreId, names} = router.query as {genreId?:string; names?: string};
+  // console.log("Genre ids:",genreId)
+  const params = useSearchParams();
+  console.log("genre Search", params);
 
+  const genreId = params.get("genreIds");
   console.log("genre ID", genreId);
+
+  const names = params.get("names");
+  console.log("ID NAMES:", names);
+
+  const [genreMovies, setGenreMovies] = useState<MovieResponse | null>(null);
+   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
+
+
+  const fetchGenre = async () => {
+    try {
+      const movies = await getFilteredGenre(genreId);
+      console.log("movie genre:", movies);
+
+      setGenreMovies(movies);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    // if(!selectedGenreIds || !selectedGenreNames) return;
+    if (!genreId.length || !names.length) return;
+    fetchGenre();
+  }, [genreId.length, genreId.length]);
 
   return (
     <div>
@@ -24,22 +55,22 @@ export default function Page() {
             <SearchGenres />
           </div>
 
-          {/* <div className="flex flex-col w-full ">
+          <div className="flex flex-col w-full ">
             <p>
-              {movies.total_results} titles in “{genreNames}”
+              {genreMovies?.total_results} titles in “{names}”
             </p>
 
             <div className="grid gap-[20px] grid-cols-2 sm:grid-cols-3 md:grid-cols-4 md:pr-[50px] md:gap-x-12 md:gap-y-8">
-              {results?.map((k) => (
+              {genreMovies?.results?.map((k) => (
                 <MovieCard movie={k} key={k.id} />
               ))}
             </div>
-          </div> */}
+          </div>
         </div>
 
-        {/* <div className="flex items-center justify-end gap-2">
-          <Pagination />
-        </div> */}
+        <div className="flex items-center justify-end gap-2">
+          {/* <Pagination more={genreMovies} setMorePage={setPage} morePage={page}/> */}
+        </div>
       </div>
     </div>
   );

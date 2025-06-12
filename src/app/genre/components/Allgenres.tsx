@@ -3,38 +3,42 @@
 import { useEffect, useState } from "react";
 import { ChevronRight } from "lucide-react";
 
-import {
-  parseAsArrayOf,
-  parseAsInteger,
-  useQueryState,
-  parseAsString,
-} from "nuqs";
 import { Button } from "@/components/ui/button";
 import { getGenre } from "@/utils/get-Genre";
 import { useRouter } from "next/navigation";
-import { DropdownMenuLabel, DropdownMenuSeparator } from "@radix-ui/react-dropdown-menu";
+import {
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+} from "@radix-ui/react-dropdown-menu";
+import {
+  parseAsArrayOf,
+  parseAsInteger,
+  parseAsString,
+  useQueryState,
+} from "nuqs";
 
- type GenreProps = {
-    id: number;
-    name: string;
-  };
+type GenreProps = {
+  id: number;
+  name: string;
+};
 
 export const SearchGenres = () => {
- 
   const router = useRouter();
 
   const [allGenre, setAllGenre] = useState<GenreProps[]>([]);
 
-  //QUERY IDS
-  const [selectedGenreIds, setSelectedGenreIds] = useQueryState(
-    "genreIds",
-    parseAsArrayOf(parseAsInteger).withDefault([])
-  );
-  // NAMES
-  const [selectedGenreNames, setSelectedGenreNames] = useQueryState(
-    "names",
-    parseAsArrayOf(parseAsString).withDefault([])
-  );
+  // //QUERY IDS
+  // const [selectedGenreIds, setSelectedGenreIds] = useQueryState(
+  //   "genreIds",
+  //   parseAsArrayOf(parseAsInteger).withDefault([])
+  // );
+  // // NAMES
+  // const [selectedGenreNames, setSelectedGenreNames] = useQueryState(
+  //   "names",
+  //   parseAsArrayOf(parseAsString).withDefault([])
+  // );
+  const [selectedGenreIds, setSelectedGenreIds] = useState<number[]>([])
+  const[selectedGenreNames, setSelectedGenreNames] = useState<string[]>([])
 
   // ALLGENRE API
   const handleSearchGenre = async () => {
@@ -62,8 +66,8 @@ export const SearchGenres = () => {
       ? selectedGenreNames.filter((n) => n !== name)
       : [...selectedGenreNames, name];
     setSelectedGenreNames(newNames);
+router.push(`/genre?genreIds=${newIds}&names=${newNames}`)
 
-    router.push(`/genre?genreIds=${newIds}&names=${newNames}`);
   };
   return (
     <div>
@@ -73,7 +77,7 @@ export const SearchGenres = () => {
       <DropdownMenuLabel className="pb-5">
         See lists of movies by genre
       </DropdownMenuLabel>
-      <DropdownMenuSeparator/>
+      <DropdownMenuSeparator />
 
       <div className="flex flex-wrap gap-3 pt-5 font-bold">
         {allGenre?.map((genre) => {
