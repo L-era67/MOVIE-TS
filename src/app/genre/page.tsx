@@ -69,7 +69,7 @@ export default function Page() {
         </div>
 
         <div className="flex items-center justify-end gap-2">
-          {/* <Pagination more={genreMovies} setMorePage={setPage} morePage={page}/> */}
+          {genreMovies && <Pagination more={genreMovies} setMorePage={setPage} morePage={page}/>}
         </div>
       </div>
     </div>
