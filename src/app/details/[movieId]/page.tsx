@@ -7,8 +7,6 @@ export default async function PageMovieDetail({
 }) {
   const { movieId } = await params;
 
-
- 
   console.log("typeof: ", Number(movieId));
   
   const numberMovieId = Number(movieId)

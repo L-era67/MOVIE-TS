@@ -66,8 +66,8 @@ export const SearchGenres = () => {
       ? selectedGenreNames.filter((n) => n !== name)
       : [...selectedGenreNames, name];
     setSelectedGenreNames(newNames);
-router.push(`/genre?genreIds=${newIds}&names=${newNames}`)
-
+    router.push(`/genre?genreIds=${newIds}&names=${newNames}`)
+    // router.push(`/genre`);
   };
   return (
     <div>
@@ -82,6 +82,7 @@ router.push(`/genre?genreIds=${newIds}&names=${newNames}`)
       <div className="flex flex-wrap gap-3 pt-5 font-bold">
         {allGenre?.map((genre) => {
           const isSelected = selectedGenreIds.includes(genre.id);
+
           return (
             <Button
               //   movie={genre}

@@ -7,9 +7,10 @@ import {
   parseAsString,
   useQueryState,
 } from "nuqs";
-import { SearchDrop } from "./searchDrop";
+
 import { getSearch } from "@/utils/get-Search";
 import { MovieResponse } from "@/types";
+import { SearchDrop } from "./searchDrop";
 
 export const SearchValue = () => {
   const router = useRouter();
@@ -27,10 +28,10 @@ export const SearchValue = () => {
   const fetchSearch = async () => {
     try {
       const input = await getSearch(search);
-      
+
       setSearchData(input);
     } catch (error) {
-      setSearchData(null)
+      setSearchData(null);
     }
   };
 
@@ -74,10 +75,7 @@ export const SearchValue = () => {
 
       <div className="absolute mt-2 z-99">
         {searchData?.results && searchData?.results?.length > 0 && (
-          <SearchDrop
-            searchData={searchData}
-            setSearch={setSearch}
-          />
+          <SearchDrop searchData={searchData} setSearch={setSearch} />
         )}
       </div>
     </div>

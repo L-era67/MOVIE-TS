@@ -8,8 +8,8 @@ import { useState } from "react";
 // import { parseAsString, useQueryState } from "nuqs";
 import { useRouter } from "next/router";
 import { ModeToggle } from "./modeToggle";
-import { Genre } from "@/app/genre/components/Genres";
-import { SearchValue } from "./search/search";
+import { Genre } from "@/app/genre/_components/Genres";
+import { SearchValue } from "../app/search/_components/search";
 
 export const Header = () => {
   //   const router = useRouter();

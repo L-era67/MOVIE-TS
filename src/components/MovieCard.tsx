@@ -16,7 +16,6 @@ export const MovieCard = ({ movie}:MovieCardProps) => {
           src={`https://image.tmdb.org/t/p/original${movie?.poster_path}`}
           alt="card1"
           // className="w-full object-cover h-[233px] md:h-[340px]"
-         
         />
 
         <div className="p-[8px] ">

@@ -3,11 +3,12 @@
 import { MovieProps } from "@/types";
 import { getMovieDetails } from "@/utils/detail/get-Movie-details";
 import { useEffect, useState } from "react";
-import { MovieDetailTitle } from "./MovieDetailRating";
-import { TrailerDetail } from "./DetailTrailer";
-import { GenreDetail } from "./GenreDetail";
-import { InfoData } from "./Info-data";
-import { MoreLikeData } from "./MoreLikeThisData";
+import { MovieDetailTitle } from "./_details/MovieDetailRating";
+import { TrailerDetail } from "./_details/DetailTrailer";
+import { GenreDetail } from "./_details/GenreDetail";
+
+import { InfoData } from "@/app/details/[movieId]/components/_details/Info-data";
+import { MoreLikeData } from "@/app/details/[movieId]/components/_details/MoreLikeThisData";
 
 export const DetailClient = ({ movieId }: { movieId: number }) => {
   const [movieDetail, setMovieDetail] = useState<MovieProps>({} as MovieProps);

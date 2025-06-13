@@ -1,4 +1,4 @@
-import { MoreLikeClient } from "./components/MoreLikeClient";
+import { MoreLikeClient } from "./_components/MoreLikeClient";
 
 export default async function Page({
   params,

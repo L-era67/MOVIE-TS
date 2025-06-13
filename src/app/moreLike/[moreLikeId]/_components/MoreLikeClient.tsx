@@ -9,6 +9,7 @@ import { parseAsInteger, useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 
 export const MoreLikeClient = ({ moreLikeId }: { moreLikeId: number }) => {
+  
   const [more, setMore] = useState<MovieResponse>({} as MovieResponse);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading]= useState(true)

@@ -1,4 +1,4 @@
-import { SeeMoreClient } from "./components/SeeMoreClient";
+import { SeeMoreClient } from "./_components/SeeMoreClient";
 
 export default async function Page({
   params,

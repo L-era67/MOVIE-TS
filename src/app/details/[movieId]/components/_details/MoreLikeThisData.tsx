@@ -2,8 +2,9 @@
 import { useEffect, useState } from "react"
 
 import { getSimilar } from "@/utils/MoreLikeALL";
-import { MoreLikeThis } from "./MorelikeThis";
+
 import { MovieProps} from "@/types";
+import { MoreLikeThis } from "./MorelikeThis";
 
 export const MoreLikeData =({movieId}:{movieId:number})=>{
 
