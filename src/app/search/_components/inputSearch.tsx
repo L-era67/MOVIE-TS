@@ -10,17 +10,18 @@ import {
 
 import { getSearch } from "@/utils/get-Search";
 import { MovieResponse } from "@/types";
-import { SearchDrop } from "./searchDrop";
+import { SearchDrop } from "./inputDrop";
 
 export const SearchValue = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState<MovieResponse | null>(null);
 
-  const [searchUrl, setSearchUrl] = useQueryState(
-    "search",
-    parseAsString.withDefault("")
-  );
+  // const [searchUrl, setSearchUrl] = useQueryState(
+  //   "search",
+  //   parseAsString.withDefault("")
+  // );
+  const [searchUrl, setSearchUrl] = useState("");
 
   const getInput = (event) => {
     setSearch(event.target.value);
@@ -38,7 +39,7 @@ export const SearchValue = () => {
   const searchPage = () => {
     const newSearchValue = search;
     setSearchUrl(newSearchValue);
-    router.push(`/search/searchValue?search=${newSearchValue}`);
+    router.push(`/search/?searchValue=${newSearchValue}`);
     setSearch("");
 
     // router.push(`/search/searchValue?search=${search}`);

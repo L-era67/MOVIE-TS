@@ -25,10 +25,19 @@ export default function Page() {
   const names = params.get("names");
 
   const [genreMovies, setGenreMovies] = useState<MovieResponse | null>(null);
-  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
+  const [page, setPage] = useQueryState<number>(
+    "page",
+    parseAsInteger.withDefault(1)
+  );
+
+  useEffect(() => {
+    // if(!selectedGenreIds || !selectedGenreNames) return;
+    if (!genreId || !names) return;
+    fetchGenre();
+  }, [genreId, page]);
 
   const fetchGenre = async () => {
-    if (!genreId) return;
+    if (genreId === null) return;
     try {
       const movies = await getFilteredGenre(genreId, page);
       console.log("movie genre:", movies);
@@ -39,16 +48,9 @@ export default function Page() {
     }
   };
 
-  useEffect(() => {
-    // if(!selectedGenreIds || !selectedGenreNames) return;
-    if (!genreId || !names) return;
-    fetchGenre();
-  }, [genreId, page]);
-
   return (
     <div>
       <div className="md:pl-10 lg:pl-20  2xl:pr-[250px]">
-
         <p className="ml-5 text-[30px] font-semibold">Search filter</p>
 
         <div className="pt-0 md:flex justify-between md:gap-5 lg:gap-20 py-8">
@@ -58,7 +60,7 @@ export default function Page() {
 
           <div className="hidden md:flex flex-col w-full ">
             <p>
-              {genreMovies?.total_results} titles in “{names}”
+              {genreMovies?.total_results} titles in “{names} ”
             </p>
 
             <div className=" md:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:pr-[50px] gap-[20px]">

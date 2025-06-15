@@ -1,5 +1,5 @@
 import { MovieResponse } from "@/types";
-import { SearchItem } from "./SearchItem";
+import { SearchItem } from "./InputItemSearch";
 
 
 type SearchProps = {

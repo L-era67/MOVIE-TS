@@ -12,8 +12,6 @@ import { MoreLikeData } from "@/app/details/[movieId]/components/_details/MoreLi
 
 export const DetailClient = ({ movieId }: { movieId: number }) => {
   const [movieDetail, setMovieDetail] = useState<MovieProps>({} as MovieProps);
-  
-  console.log("Movie props", movieDetail);
 
   useEffect(() => {
     if (!movieId) return;

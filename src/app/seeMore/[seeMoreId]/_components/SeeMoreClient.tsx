@@ -17,7 +17,7 @@ export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const [morePage, setMorePage] = useQueryState(
+  const [morePage, setMorePage] = useQueryState<number>(
     "page",
     parseAsInteger.withDefault(1)
   );

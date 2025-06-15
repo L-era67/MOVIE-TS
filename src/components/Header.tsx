@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import { ModeToggle } from "./modeToggle";
 import { Genre } from "@/app/genre/_components/Genres";
-import { SearchValue } from "../app/search/_components/search";
+import { SearchValue } from "../app/search/_components/inputSearch";
 
 export const Header = () => {
   //   const router = useRouter();
