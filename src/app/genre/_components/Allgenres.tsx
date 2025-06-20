@@ -66,7 +66,7 @@ export const SearchGenres = () => {
       ? selectedGenreNames.filter((n) => n !== name)
       : [...selectedGenreNames, name];
     setSelectedGenreNames(newNames);
-    router.push(`/genre?genreIds=${newIds}&names=${newNames}`)
+    router.push(`/genre?genreIds=${newIds}&names=${newNames}`);
     // router.push(`/genre`);
   };
   return (

@@ -8,15 +8,24 @@ import {
 import { ChevronDown } from "lucide-react";
 import { SearchGenres } from "./Allgenres";
 
-export const Genre = () => {
+export const Genre = ({ searchBtn }: { searchBtn?: Boolean }) => {
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
-          <Button variant="outline">
-            Genre
-            <ChevronDown />
-          </Button>
+          <div>
+            {!searchBtn && (
+              <Button variant="outline">
+                Genre
+                <ChevronDown />
+              </Button>
+            )}
+            {searchBtn && (
+              <Button variant="outline">
+                <ChevronDown />
+              </Button>
+            )}
+          </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-150 p-5 z-99">
           <SearchGenres />

@@ -41,7 +41,14 @@ export const MovieCarousel = () => {
   }, []);
 
   if (loading) {
-    return <CarouselLoader/>
+    return <CarouselLoader />;
+  }
+  if (error) {
+    return (
+      <div className="w-screen flex items-center h-64 text-red-500">
+        {error}
+      </div>
+    );
   }
 
   return (
@@ -57,13 +64,14 @@ export const MovieCarousel = () => {
         ]}
       >
         <CarouselContent>
-          {!loading && nowPlayingMovie?.slice(0, 5).map((movie, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1">
-                <MovieCardCarouselItem movie={movie} />
-              </div>
-            </CarouselItem>
-          ))}
+          {!loading &&
+            nowPlayingMovie?.slice(0, 5).map((movie, index) => (
+              <CarouselItem key={index}>
+                <div className="p-1">
+                  <MovieCardCarouselItem movie={movie} />
+                </div>
+              </CarouselItem>
+            ))}
         </CarouselContent>
         <CarouselPrevious className=" hidden md:block left-[20px] " />
         <CarouselNext className=" hidden md:block right-[20px]" />

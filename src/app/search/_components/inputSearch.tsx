@@ -21,11 +21,13 @@ export const SearchValue = () => {
   //   "search",
   //   parseAsString.withDefault("")
   // );
+
   const [searchUrl, setSearchUrl] = useState("");
 
-  const getInput = (event) => {
+  const getInput = (event: any) => {
     setSearch(event.target.value);
   };
+
   const fetchSearch = async () => {
     try {
       const input = await getSearch(search);
@@ -57,17 +59,16 @@ export const SearchValue = () => {
   return (
     <div>
       <div className="flex items-center ">
+        <div onClick={() => searchPage()}>
+          <Search className="w-[16px], h-[16px]" />
+        </div>
         <input
           type="text"
           value={search}
           placeholder="Search Movie..."
           onChange={getInput}
-          className="hidden md:block outline-none min-w-[251px] md:max-w-[900px] relative"
+          className="outline-none  md:max-w-[900px] relative"
         />
-
-        <div onClick={() => searchPage()}>
-          <Search />
-        </div>
 
         {/* <button >
           <Delete className="text-gray-200 hover:text-gray-600"/>

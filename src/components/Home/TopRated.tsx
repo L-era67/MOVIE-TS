@@ -32,7 +32,7 @@ export const TopRated = () => {
 
   if (error) {
     return (
-      <div className="w-screen flex justify-center items-center h-64 text-red-500">
+      <div className="w-screen flex items-center h-64 text-red-500">
         {error}
       </div>
     );

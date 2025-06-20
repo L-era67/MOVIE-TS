@@ -71,6 +71,9 @@ export default function Page() {
           </div>
         </div>
 
+        <p className="block pl-5 md:hidden">
+          {genreMovies?.total_results} titles in “{names} ”
+        </p>
         <div className="grid gap-[20px] grid-cols-2 px-5 mb-8 md:hidden">
           {genreMovies?.results?.map((k) => (
             <MovieCard movie={k} key={k.id} />

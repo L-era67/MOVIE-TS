@@ -39,7 +39,7 @@ export const SearchPage = ({
         <div className="w-[70%]">
           <div className="hidden md:grid w-full sm:grid-cols-2 md:grid-cols-4 gap-5">
             {searchData?.results?.length > 0 ? (
-              searchData?.results?.map((m) => <MovieCard movie={m} />)
+              searchData?.results?.map((m, i) => <MovieCard movie={m} key={i}/>)
             ) : (
               <p className="col-span-full text-center pt-11 pb-9 border-1 ">
                 No results found.
