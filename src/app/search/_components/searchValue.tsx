@@ -11,21 +11,21 @@ import {
 import { getSearch } from "@/utils/get-Search";
 import { MovieResponse } from "@/types";
 import { SearchDrop } from "./inputDrop";
-import { SearchDropLoader } from "@/components/skeletons/searchLoader";
+import { NoResultSearch} from "@/components/skeletons/searchLoader";
 
 export const SearchValue = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState<MovieResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  const [noResults, setNoResults] = useState();
+  // const [noResults, setNoResults] = useState();
 
   // const [searchUrl, setSearchUrl] = useQueryState(
   //   "search",
   //   parseAsString.withDefault("")
   // );
 
-  const [searchUrl, setSearchUrl] = useState("");
+  // const [searchUrl, setSearchUrl] = useState("");
 
   const getInput = (event: any) => {
     setSearch(event.target.value);
@@ -45,7 +45,7 @@ export const SearchValue = () => {
 
   const searchPage = () => {
     const newSearchValue = search;
-    setSearchUrl(newSearchValue);
+    // setSearchUrl(newSearchValue);
     router.push(`/search/?searchValue=${newSearchValue}`);
     setSearch("");
 
@@ -79,7 +79,7 @@ export const SearchValue = () => {
 
       {searchData?.results?.length === 0 && search && (
         <div className="absolute bg-yellow-300 left-1/2 -translate-x-1/2 mt-2 z-99">
-          {loading && <SearchDropLoader />}
+          {loading && <NoResultSearch />}
         </div>
       )}
 
