@@ -31,8 +31,8 @@ export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
     } catch (error) {
       console.log(error);
       setError("Failed to load movies. Please try again.");
-    } finally{
-      setLoading(false)
+    } finally {
+      setTimeout(() => setLoading(false), 300);
     }
   };
 
@@ -63,13 +63,15 @@ export const SeeMoreClient = ({ SeeMoreId }: SeeMoreClientProps) => {
             (SeeMoreId === "popular" && "Popular") ||
             (SeeMoreId === "top_rated" && "Top rated")}
         </p>
-        {loading && <SeeMoreLoader/>}
+        {loading && <SeeMoreLoader />}
+
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-8 py-8 ">
-          {!loading && dataMore.map((movie, id) => (
-            <div key={id}>
-              <MovieCard movie={movie} />
-            </div>
-          ))}
+          {!loading &&
+            dataMore.map((movie, id) => (
+              <div key={id}>
+                <MovieCard movie={movie} />
+              </div>
+            ))}
         </div>
 
         {more.total_pages > 1 && (

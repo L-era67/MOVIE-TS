@@ -30,7 +30,7 @@ export const MoreLikeClient = ({ moreLikeId }: { moreLikeId: number }) => {
       console.log(error);
       setError("Failed to load similar movies. Please try again.");
     }finally{
-      setTimeout(()=> setLoading(false), 200)
+      setTimeout(()=> setLoading(false), 300)
     }
 
   };

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { ModeToggle } from "./modeToggle";
 import { Genre } from "@/app/genre/_components/Genres";
-import { SearchValue } from "../app/search/_components/inputSearch";
+import { SearchValue } from "../app/search/_components/searchValue";
 
 export const Header = () => {
   const [searchBtn, setSearchBtn] = useState<Boolean>(false);
@@ -20,10 +20,11 @@ export const Header = () => {
   // }
 
   return (
-    <div className="relative flex justify-between items-center px-5 mt-4 mb-6 bg-amber-500">
-      <div className="hidden md:flex items-center  text-indigo-700 w-full">
+    <div className="relative flex justify-between items-center px-5 mt-4 mb-6">
+      {/*MD UYD GARCH LOGO md ba utas gej tus tusdan logo bichehgui bol phone uyd logo-ni alga bolgohoor windows heseg bas alga bolood baina*/}
+      <div className="hidden md:flex items-center  text-indigo-700">
         <Link href={"/"}>
-          <div className="flex gap-2 items-center ">
+          <div className="flex gap-2 items-center">
             <FilmIcon />
             <p className="text-base">
               <b>
@@ -34,63 +35,66 @@ export const Header = () => {
         </Link>
       </div>
 
-      <div className="hidden gap-3 md:flex bg-blue-600">
+      {/*MD UYD GARCH IREH GENRE*/}
+      <div className="hidden gap-3 md:flex">
         <Genre />
         <Button variant="outline">
           <SearchValue />
         </Button>
       </div>
 
-      <div className="flex justify-between w-full bg-amber-300 md:hidden">
-        <div className=" ">
-          {!searchBtn && (
-            <div className="flex items-center  text-indigo-700  ">
-              <Link href={"/"}>
-                <div className="flex items-center gap-2">
-                  <FilmIcon />
-                  <p className="text-base">
-                    <b>
-                      <i>Movie Z</i>
-                    </b>
-                  </p>
-                </div>
-              </Link>
-            </div>
-          )}
-        </div>
-
-        <div className="flex">
-          <div className="flex items-center w-full justify-center md:hidden">
-            {searchBtn && (
-              <div className="flex items-center md:hidden">
-                <Genre searchBtn={searchBtn} />
-                <SearchValue />
-              </div>
-            )}
-
-            {!searchBtn && (
-              <Button variant="outline" onClick={() => setSearchBtn(true)}>
-                <Search />
-              </Button>
-            )}
-
-            {searchBtn && (
-              <div className="" onClick={() => setSearchBtn(false)}>
-                <X className="w-[16px], h-[16px]" />
-              </div>
-            )}
-          </div>
-
-          {/*MODE TOGGLE */}
-
-          <div className="">
-            <ModeToggle />
-          </div>
-        </div>
+      {/*MD UYD GARCH IREH Toggle*/}
+      <div className="hidden md:block">
+        <ModeToggle />
       </div>
 
-      <div className="">
-        <ModeToggle />
+      {/*Phone*/}
+      <div className="flex justify-between items-center w-full md:hidden">
+        {/*State F uyd garah LOGO*/}
+        {!searchBtn && (
+          <div className="flex items-center  text-indigo-700  ">
+            <Link href={"/"}>
+              <div className="flex items-center gap-2">
+                <FilmIcon />
+                <p className="text-base">
+                  <b>
+                    <i>Movie Z</i>
+                  </b>
+                </p>
+              </div>
+            </Link>
+          </div>
+        )}
+        {/*State F uyd search & toggle*/}
+        {!searchBtn && (
+          <div className="flex gap-3 ">
+            {/*"HAILT HIIH TOWCH" anhnii utga F uchir ehelj ene haragdan state F uyd ajilna gehdee ene ni utgaa T esreg bolgon*/}
+
+            <Button variant="outline" onClick={() => setSearchBtn(true)}>
+              <Search />
+            </Button>
+
+            <div className="block md:hidden">
+              <ModeToggle />
+            </div>
+          </div>
+        )}
+
+        {/*State T boloh uyd garch ireh Input*/}
+        {searchBtn && (
+          <div className="flex  items-center w-full  justify-between">
+            {/*SearchInput ba genre heseg state T uyd ajilna*/}
+            <div className="flex items-center gap-[10%]">
+              <Genre searchBtn={searchBtn} />
+              <SearchValue />
+            </div>
+
+            {/*Erunhiiduu hailt hiih btn-s urwuu hamraaltai l gesen ug shdee hu "X" btn*/}
+            <div className="" onClick={() => setSearchBtn(false)}>
+              <X className="w-[16px], h-[16px]" />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

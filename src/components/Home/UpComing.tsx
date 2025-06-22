@@ -23,9 +23,9 @@ export const Upcoming = () => {
         setUpcoming(fetchUpComing);
       } catch (error) {
         console.log("UP COMING ERR:", error);
-        setError("Failed to load movies. Please try again.");
+        setError("Failed to load up coming movies. Please try again.");
       } finally {
-        setLoading(false);
+        setTimeout(()=> setLoading(false),300);
       }
     };
     getUpcoming();

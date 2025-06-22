@@ -11,11 +11,14 @@ import {
 import { getSearch } from "@/utils/get-Search";
 import { MovieResponse } from "@/types";
 import { SearchDrop } from "./inputDrop";
+import { SearchDropLoader } from "@/components/skeletons/searchLoader";
 
 export const SearchValue = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState<MovieResponse | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [noResults, setNoResults] = useState();
 
   // const [searchUrl, setSearchUrl] = useQueryState(
   //   "search",
@@ -29,12 +32,14 @@ export const SearchValue = () => {
   };
 
   const fetchSearch = async () => {
+    setLoading(true);
     try {
       const input = await getSearch(search);
-
       setSearchData(input);
     } catch (error) {
       setSearchData(null);
+    } finally {
+      setTimeout(() => setLoading(false), 700);
     }
   };
 
@@ -56,30 +61,41 @@ export const SearchValue = () => {
     fetchSearch();
   }, [search]);
 
+  // if(!searchData?.results || !searchData?.results?.length) return;
   return (
     <div>
-      <div className="flex items-center ">
+      <div className="flex items-center gap-1">
         <div onClick={() => searchPage()}>
-          <Search className="w-[16px], h-[16px]" />
+          <Search className=" text-gray-500" />
         </div>
         <input
           type="text"
           value={search}
           placeholder="Search Movie..."
           onChange={getInput}
-          className="outline-none  md:max-w-[900px] relative"
+          className="outline-none w-[80%] md:max-w-[900px] relative"
         />
-
-        {/* <button >
-          <Delete className="text-gray-200 hover:text-gray-600"/>
-        </button> */}
       </div>
 
-      <div className="absolute mt-2 z-99">
-        {searchData?.results && searchData?.results?.length > 0 && (
-          <SearchDrop searchData={searchData} setSearch={setSearch} />
-        )}
-      </div>
+      {searchData?.results?.length === 0 && search && (
+        <div className="absolute bg-yellow-300 left-1/2 -translate-x-1/2 mt-2 z-99">
+          {loading && <SearchDropLoader />}
+        </div>
+      )}
+
+      {!loading && search && searchData?.results?.length === 0 && (
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-99">
+          No results found.
+        </div>
+      )}
+
+      {!loading && (
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-99">
+          {searchData?.results && searchData?.results?.length > 0 && (
+            <SearchDrop searchData={searchData} setSearch={setSearch} />
+          )}
+        </div>
+      )}
     </div>
   );
 };

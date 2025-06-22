@@ -44,8 +44,8 @@ export default function SearchValue() {
   }, [search]);
 
   return (
-    <div className="w-[80%] mx-auto ">
+   
       <SearchPage searchData={searchData} search={search} page = {page} setPage = {setPage}/>
-    </div>
+
   );
 }

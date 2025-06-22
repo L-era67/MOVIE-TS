@@ -31,9 +31,10 @@ export const MovieCarousel = () => {
         setNowPlayingMovie(NowMovies);
         // console.log(JSON.stringify(NowMovies, null , 2))
       } catch (error) {
+        setError("Failed to load Play now movies. Please try again.")
         console.log("PLAY NOW ERROR:", error);
       } finally {
-        setLoading(false);
+        setTimeout(()=> setLoading(false), 300);
       }
     };
 
@@ -43,6 +44,7 @@ export const MovieCarousel = () => {
   if (loading) {
     return <CarouselLoader />;
   }
+
   if (error) {
     return (
       <div className="w-screen flex items-center h-64 text-red-500">

@@ -22,11 +22,11 @@ export const Popular = () => {
         setPopularMovies(FetchPopular);
       } catch (error) {
         console.log("POPULAR ERROR", error);
-        setError("Failed to load movies. Please try again.");
+        setError("Failed to load popular movies. Please try again.");
       } finally {
         setLoading(false);
       }
-      setLoading(false);
+      setTimeout(()=> setLoading(false),300);
     };
 
     PopularFetchM();

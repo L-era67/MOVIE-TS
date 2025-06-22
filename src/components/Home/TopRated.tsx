@@ -22,9 +22,9 @@ export const TopRated = () => {
         setTopRated(rated);
       } catch (error) {
         console.log("TOP RATED ERR", error);
-        setError("Failed to load movies. Please try again.");
+        setError("Failed to load top rated movies. Please try again.");
       } finally {
-        setLoading(false);
+        setTimeout(()=> setLoading(false), 300);
       }
     };
     topRatedMov();

@@ -49,46 +49,46 @@ export default function Page() {
   };
 
   return (
-    <div>
-      <div className="md:pl-10 lg:pl-20  2xl:pr-[250px]">
-        <p className="ml-5 text-[30px] font-semibold">Search filter</p>
+    <div className="md:pl-10 lg:pl-20  2xl:pr-[250px]">
+      <p className="ml-5 text-[30px] font-semibold">Search filter</p>
 
-        <div className="pt-0 md:flex justify-between md:gap-5 lg:gap-20 py-8">
-          <div className="m-5 md:w-[35%]">
-            <SearchGenres />
+      <div className="pt-0 md:flex justify-between md:gap-5 lg:gap-20 py-8">
+        <div className="m-5 md:w-[35%]">
+          <SearchGenres />
+        </div>
+
+        {/*Windows */}
+        <div className="hidden md:flex flex-col w-[65%] ">
+          <p>
+            {genreMovies?.total_results} titles in “{names} ”
+          </p>
+
+          <div className=" md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:pr-[50px] gap-5">
+            {genreMovies?.results?.map((k) => (
+              <MovieCard movie={k} key={k.id} />
+            ))}
           </div>
-
-          <div className="hidden md:flex flex-col w-full ">
-            <p>
-              {genreMovies?.total_results} titles in “{names} ”
-            </p>
-
-            <div className=" md:grid sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:pr-[50px] gap-[20px]">
-              {genreMovies?.results?.map((k) => (
-                <MovieCard movie={k} key={k.id} />
-              ))}
-            </div>
-          </div>
         </div>
+      </div>
 
-        <p className="block pl-5 md:hidden">
-          {genreMovies?.total_results} titles in “{names} ”
-        </p>
-        <div className="grid gap-[20px] grid-cols-2 px-5 mb-8 md:hidden">
-          {genreMovies?.results?.map((k) => (
-            <MovieCard movie={k} key={k.id} />
-          ))}
-        </div>
+      {/*Phone */}
+      <p className="block pl-5 md:hidden">
+        {genreMovies?.total_results} titles in “{names} ”
+      </p>
+      <div className="grid gap-[20px] sm:grid-cols-3  grid-cols-2 px-5 mb-8 md:hidden">
+        {genreMovies?.results?.map((k) => (
+          <MovieCard movie={k} key={k.id} />
+        ))}
+      </div>
 
-        <div className="flex items-center justify-end gap-2 pr-[20px] md:pr-[50px]">
-          {genreMovies && (
-            <Pagination
-              more={genreMovies}
-              setMorePage={setPage}
-              morePage={page}
-            />
-          )}
-        </div>
+      <div className="flex items-center justify-end gap-2 pr-[20px] md:pr-[50px]">
+        {genreMovies && (
+          <Pagination
+            more={genreMovies}
+            setMorePage={setPage}
+            morePage={page}
+          />
+        )}
       </div>
     </div>
   );
