@@ -39,7 +39,8 @@ export const SearchValue = () => {
     } catch (error) {
       setSearchData(null);
     } finally {
-      setTimeout(() => setLoading(false), 700);
+      setLoading(false)
+      // setTimeout(() => setLoading(false), 100);
     }
   };
 

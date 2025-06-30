@@ -20,7 +20,9 @@ export default function Page() {
   console.log("genre Search", params);
 
   const genreId = params.get("genreIds");
-  console.log("genre ID", genreId);
+
+  // console.log("genre ID", genreId?.length);
+  console.log( genreId);
 
   const names = params.get("names");
 

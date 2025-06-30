@@ -1,6 +1,6 @@
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
-import { Image } from "./Image";
+import { Image } from "./image/Image";
 import {  MovieProps } from "@/types";
 
 type MovieCardProps = {

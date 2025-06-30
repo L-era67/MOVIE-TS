@@ -14,6 +14,7 @@ export const Genre = ({ searchBtn }: { searchBtn?: Boolean }) => {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div>
+
             {!searchBtn && (
               <Button variant="outline">
                 Genre
@@ -25,6 +26,7 @@ export const Genre = ({ searchBtn }: { searchBtn?: Boolean }) => {
                 <ChevronDown />
               </Button>
             )}
+            
           </div>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="w-150 p-5 z-99">
