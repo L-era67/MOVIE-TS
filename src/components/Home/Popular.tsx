@@ -9,6 +9,7 @@ import { GetPopularMovies } from "@/utils/home/get-popular-now";
 import { MovieProps } from "@/types";
 import { HomeTitles, MovieCardLoader } from "../skeletons/upComingHomeLoader";
 
+
 export const Popular = () => {
   const [popularMov, setPopularMovies] = useState<MovieProps[]>([]);
   const [error, setError] = useState<string | null>(null);

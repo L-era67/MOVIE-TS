@@ -2,13 +2,14 @@
 
 import { ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
-import { HomeTitles, MovieCardLoader } from "../skeletons/upComingHomeLoader";
+
 
 import Link from "next/link";
 
 import { GetUpComing } from "@/utils/home/get-upcoming-movie";
 import { MovieProps } from "@/types";
 import { MovieCard } from "../MovieCard";
+import { HomeTitles, MovieCardLoader } from "../skeletons/upComingHomeLoader";
 
 export const Upcoming = () => {
   const [upComing, setUpcoming] = useState<MovieProps[]>([]);

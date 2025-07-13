@@ -8,6 +8,7 @@ import { MovieCard } from "../MovieCard";
 import { MovieProps } from "@/types";
 import { HomeTitles, MovieCardLoader } from "../skeletons/upComingHomeLoader";
 
+
 export const TopRated = () => {
   const [topRated, setTopRated] = useState<MovieProps[]>([]);
   const [error, setError] = useState<string | null>(null);

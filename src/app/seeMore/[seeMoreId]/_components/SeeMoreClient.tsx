@@ -3,6 +3,7 @@
 import { MovieCard } from "@/components/MovieCard";
 import { Pagination } from "@/components/Pagination";
 import { SeeMoreLoader } from "@/components/skeletons/upComingHomeLoader";
+
 import { MovieResponse } from "@/types";
 import { getCategoryMovie } from "@/utils/get-category";
 import { parseAsInteger, useQueryState } from "nuqs";
