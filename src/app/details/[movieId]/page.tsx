@@ -1,4 +1,5 @@
-import { DetailClient } from "./components/DetailClient";
+import { DetailClient } from "./_components/DetailClient";
+
 
 export default async function PageMovieDetail({
   params,
@@ -6,8 +7,6 @@ export default async function PageMovieDetail({
   params: Promise<{ movieId: string }>;
 }) {
   const { movieId } = await params;
-
-  console.log("typeof: ", Number(movieId));
   
   const numberMovieId = Number(movieId)
 

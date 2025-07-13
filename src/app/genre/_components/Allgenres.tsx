@@ -17,24 +17,18 @@ type GenreProps = {
 };
 
 export const SearchGenres = () => {
+  const [allGenre, setAllGenre] = useState<GenreProps[]>([]);
 
   const { push } = useRouter();
   const searchParams = useSearchParams();
 
-  const [allGenre, setAllGenre] = useState<GenreProps[]>([]);
+  const genreIds = (searchParams.get("genreIds") || "")
+    ?.split(",")
+    .filter((id) => id != ""); // (["", "28"] gehees sergiilsen
 
-  // const [genreIds, setGenreIds] = useState([])
-  
-  const genreIds = (searchParams.get("genreIds") || "")?.split(",");
-
-  // useRouter-r push-g awch baina
-  // useSearchParams
-
-  // const genreIds = searchParams.get("genreIds")
-
-  console.log("genreIds :", genreIds);
-
-  // const [selectedGenreIds, setSelectedGenreIds] = useState<number[]>([]);
+  const genreNames = (searchParams.get("names") || "")
+    .split(", ")
+    .filter((name) => name != "");
 
   // ALLGENRE API
   const handleSearchGenre = async () => {
@@ -59,16 +53,28 @@ export const SearchGenres = () => {
       ? genreIds.filter((genreId) => genreId !== id)
       : [...genreIds, id];
 
-    search.set("genreIds", newIds.join(","));
+    const newNames = genreNames.includes(name)
+      ? genreNames.filter((genreName) => genreName !== name)
+      : [...genreNames, name];
+
+    console.log("newNames:", newNames);
+
+    const queryIds = newIds.join(",");
+    const queryNames = newNames.join(", ");
+
+    search.set("genreIds", queryIds);
+    search.set("names", queryNames);
 
     push(`/genre?${search.toString()}`);
-    console.log(":P", search);
   };
+
+  const pathName = usePathname();
+  const isOnSearchPage = pathName.includes("/search");
 
   return (
     <div className="bg-white/40 dark:bg-black/40 backdrop-blur-sm pl-5 pb-5 rounded-lg">
       <DropdownMenuLabel className="font-bold text-[24px] ">
-        Genres
+        {isOnSearchPage ? "Search by genre" : "Genres"}
       </DropdownMenuLabel>
       <DropdownMenuLabel className="pb-5">
         See lists of movies by genre

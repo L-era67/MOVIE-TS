@@ -1,34 +1,29 @@
-import { useEffect, useState } from "react";
-import { Delete, Search } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Search } from "lucide-react";
 import { useRouter } from "next/navigation";
-import {
-  parseAsArrayOf,
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-} from "nuqs";
 
 import { getSearch } from "@/utils/get-Search";
 import { MovieResponse } from "@/types";
-import { SearchDrop } from "./inputDrop";
-import { NoResultSearch} from "@/components/skeletons/searchLoader";
+import { SearchDrop } from "./searchDrop";
+import { NoResultSearch } from "@/components/skeletons/searchLoader";
 
-export const SearchValue = () => {
+export const SearchInput = () => {
   const router = useRouter();
   const [search, setSearch] = useState("");
   const [searchData, setSearchData] = useState<MovieResponse | null>(null);
   const [loading, setLoading] = useState(true);
-  // const [noResults, setNoResults] = useState();
 
-  // const [searchUrl, setSearchUrl] = useQueryState(
-  //   "search",
-  //   parseAsString.withDefault("")
-  // );
-
-  // const [searchUrl, setSearchUrl] = useState("");
-
-  const getInput = (event: any) => {
+  const getInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(event.target.value);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (!search.trim()) return;
+    if (e.key === "Enter") {
+      // const newSearchValue = search;
+      router.push(`/search?searchValue=${search}`);
+      setSearch("");
+    }
   };
 
   const fetchSearch = async () => {
@@ -39,19 +34,16 @@ export const SearchValue = () => {
     } catch (error) {
       setSearchData(null);
     } finally {
-      setLoading(false)
+      setLoading(false);
       // setTimeout(() => setLoading(false), 100);
     }
   };
 
   const searchPage = () => {
+    if (!search.trim()) return;
     const newSearchValue = search;
-    // setSearchUrl(newSearchValue);
-    router.push(`/search/?searchValue=${newSearchValue}`);
+    router.push(`/search?searchValue=${newSearchValue}`);
     setSearch("");
-
-    // router.push(`/search/searchValue?search=${search}`);
-    // setSearch("")
   };
 
   useEffect(() => {
@@ -63,35 +55,40 @@ export const SearchValue = () => {
   }, [search]);
 
   // if(!searchData?.results || !searchData?.results?.length) return;
+
   return (
     <div>
       <div className="flex items-center gap-1">
-        <div onClick={() => searchPage()}>
-          <Search className=" text-gray-500" />
+        <div
+          onClick={() => searchPage()}
+          className="text-gray-500 hover:text-black dark:hover:text-white transition"
+        >
+          <Search />
         </div>
         <input
           type="text"
           value={search}
           placeholder="Search Movie..."
           onChange={getInput}
+          onKeyDown={handleKeyDown}
           className="outline-none w-[80%] md:max-w-[900px] relative"
         />
       </div>
 
-      {searchData?.results?.length === 0 && search && (
-        <div className="absolute bg-yellow-300 left-1/2 -translate-x-1/2 mt-2 z-99">
-          {loading && <NoResultSearch />}
+      {loading && search && (
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-50">
+          <NoResultSearch />
         </div>
       )}
 
       {!loading && search && searchData?.results?.length === 0 && (
-        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-99">
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-50">
           No results found.
         </div>
       )}
 
-      {!loading && (
-        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-99">
+      {!loading && (searchData?.results?.length ?? 0) > 0 && (
+        <div className="absolute left-1/2 -translate-x-1/2 mt-2 z-50">
           {searchData?.results && searchData?.results?.length > 0 && (
             <SearchDrop searchData={searchData} setSearch={setSearch} />
           )}

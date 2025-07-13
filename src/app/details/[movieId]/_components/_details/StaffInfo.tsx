@@ -8,8 +8,8 @@ interface StaffType{
 
 export const StaffInformation = ({ staffDirector, writer, stars }:StaffType) => {
   return (
-    <table className="table-fixed mx-5 w-full">
-      <tbody className="border-b border-[#E4E4E7] divide-y w-full">
+    <table className="table-fixed  w-full mx-5">
+      <tbody className="border-b  border-[#E4E4E7] divide-y w-full">
         <tr className="text-left">
           <th className="pb-1 pt-5"> Director</th>
 

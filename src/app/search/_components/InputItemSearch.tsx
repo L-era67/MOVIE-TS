@@ -1,3 +1,4 @@
+import { ImageSearchSuggest } from "@/components/loadableImage/searchSuggestImage";
 import { MovieProps } from "@/types";
 import { ArrowRight, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
@@ -19,10 +20,9 @@ export const SearchItem = ({ m, setSearch }: SearchItemProps) => {
 
   return (
     <div key={m.id} className="flex gap-4  border-b-1  pt-[9px] pb-2">
-      <img
+      <ImageSearchSuggest
         src={`https://image.tmdb.org/t/p/original/${poster_path}`}
         alt="search"
-        className="w-[67px] h-[100px] rounded-md"
       />
 
       <div className="flex flex-col w-full gap-3 ">
@@ -49,13 +49,13 @@ export const SearchItem = ({ m, setSearch }: SearchItemProps) => {
         <div className="flex justify-between text-foreground text-[14px]">
           <p className="">{release_date.slice(0,4)}</p>
 
-          <button
+          <div
             onClick={() => handleSeeMore()}
-            className=" text-[14px] flex items-center gap-2 justify-center dark:text-white "
+            className="text-[14px] flex items-center gap-2 justify-center dark:text-white "
           >
             See more
             <ArrowRight className="w-[16px] h-[16px]" />
-          </button>
+          </div>
         </div>
       </div>
     </div>

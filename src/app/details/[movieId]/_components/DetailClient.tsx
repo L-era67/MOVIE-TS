@@ -7,8 +7,8 @@ import { MovieDetailTitle } from "./_details/MovieDetailRating";
 import { TrailerDetail } from "./_details/DetailTrailer";
 import { GenreDetail } from "./_details/GenreDetail";
 
-import { InfoData } from "@/app/details/[movieId]/components/_details/Info-data";
-import { MoreLikeData } from "@/app/details/[movieId]/components/_details/MoreLikeThisData";
+import { InfoData } from "@/app/details/[movieId]/_components/_details/Info-data";
+import { MoreLikeData } from "@/app/details/[movieId]/_components/_details/MoreLikeThisData";
 
 export const DetailClient = ({ movieId }: { movieId: number }) => {
   const [movieDetail, setMovieDetail] = useState<MovieProps>({} as MovieProps);
@@ -28,17 +28,11 @@ export const DetailClient = ({ movieId }: { movieId: number }) => {
     };
     FetchMovieDetail();
   }, [movieId]);
-  
 
   return (
     <div>
       <div className="flex flex-col items-center ">
         <div className="md:w-[80%] flex flex-col gap-8">
-          {/* <Header /> */}
-
-          {/* <div className="md:w-[80%]"> {loader && <DetailLoader />}</div> */}
-
-          {/* Movie Detail Title */}
           <MovieDetailTitle movieDetail={movieDetail} />
           <TrailerDetail movieDetail={movieDetail} />
           <GenreDetail movieDetail={movieDetail} />
@@ -47,8 +41,6 @@ export const DetailClient = ({ movieId }: { movieId: number }) => {
 
           <MoreLikeData movieId={movieId} />
         </div>
-
-        <div className="w-screen mt-10">{/* <Footer /> */}</div>
       </div>
     </div>
   );

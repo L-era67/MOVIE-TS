@@ -11,44 +11,48 @@ import { MovieResponse } from "@/types";
 import { parseAsInteger, useQueryState } from "nuqs";
 
 export default function Page() {
-  // const router = useRouter();
-
-  // const {genreId, names} = router.query as {genreId?:string; names?: string};
-  // console.log("Genre ids:",genreId)
-
   const params = useSearchParams();
-  console.log("genre Search", params);
-
   const genreId = params.get("genreIds");
 
-  // console.log("genre ID", genreId?.length);
-  console.log( genreId);
+  const genreNames = params.get("names");
+  console.log("genre NAMES::", genreNames);
+  
 
-  const names = params.get("names");
+  console.log("GENRE MAIN GENREIDS:", genreId);
+
 
   const [genreMovies, setGenreMovies] = useState<MovieResponse | null>(null);
+  // const [showGenreList, setShowGenreList] =useState(false)
+
   const [page, setPage] = useQueryState<number>(
     "page",
     parseAsInteger.withDefault(1)
   );
 
-  useEffect(() => {
-    // if(!selectedGenreIds || !selectedGenreNames) return;
-    if (!genreId || !names) return;
-    fetchGenre();
-  }, [genreId, page]);
-
   const fetchGenre = async () => {
     if (genreId === null) return;
     try {
       const movies = await getFilteredGenre(genreId, page);
-      console.log("movie genre:", movies);
 
       setGenreMovies(movies);
     } catch (error) {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    // if(!selectedGenreIds || !selectedGenreNames) return;
+    if (!genreId) return;
+    fetchGenre();
+  }, [genreId, page]);
+
+  //   useEffect(() => {
+  //   if (!genreId) {
+  //     setShowGenreList(true);
+  //     <Genre showGenreList={showGenreList} />;
+  //   }
+  //   fetchGenre();
+  // }, [genreId, page]);
 
   return (
     <div className="md:pl-10 lg:pl-20  2xl:pr-[250px]">
@@ -61,9 +65,7 @@ export default function Page() {
 
         {/*Windows */}
         <div className="hidden md:flex flex-col w-[65%] ">
-          <p>
-            {genreMovies?.total_results} titles in “{names} ”
-          </p>
+          <p>{genreMovies?.total_results} titles in “{genreNames}”</p>
 
           <div className=" md:grid md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 md:pr-[50px] gap-5">
             {genreMovies?.results?.map((k) => (
@@ -75,7 +77,7 @@ export default function Page() {
 
       {/*Phone */}
       <p className="block pl-5 md:hidden">
-        {genreMovies?.total_results} titles in “{names} ”
+        {genreMovies?.total_results} titles in “{genreNames}”
       </p>
       <div className="grid gap-[20px] sm:grid-cols-3  grid-cols-2 px-5 mb-8 md:hidden">
         {genreMovies?.results?.map((k) => (

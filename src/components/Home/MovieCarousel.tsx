@@ -75,8 +75,8 @@ export const MovieCarousel = () => {
               </CarouselItem>
             ))}
         </CarouselContent>
-        <CarouselPrevious className=" hidden md:block left-[20px] " />
-        <CarouselNext className=" hidden md:block right-[20px]" />
+        <CarouselPrevious className=" hidden md:flex left-[20px] justify-center items-center" />
+        <CarouselNext className=" hidden md:flex right-[20px]  justify-center items-center" />
       </Carousel>
     </div>
   );

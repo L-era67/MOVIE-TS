@@ -10,12 +10,11 @@ type PaginationProp = {
 export const Pagination = ({ more, setMorePage, morePage }: PaginationProp) => {
   const totalPage = more?.total_pages;
 
-  console.log("TOTALPAGEE", totalPage);
 
   const arr = Array(totalPage - 1)
     .fill(null)
     .map((_, index) => index + 1);
-  console.log(arr);
+
 
   const handlePrev = () => {
     if (morePage === 1) return;
@@ -35,6 +34,7 @@ export const Pagination = ({ more, setMorePage, morePage }: PaginationProp) => {
       <Button variant="outline" onClick={handlePrev}>
         Previous
       </Button>
+
       {arr.length > 0 &&
         arr.map((number, i) => {
           if (morePage + 1 >= number && morePage - 1 < number) {
@@ -49,6 +49,7 @@ export const Pagination = ({ more, setMorePage, morePage }: PaginationProp) => {
       <Button onClick={() => handleSelect(totalPage)} variant="outline">
         {totalPage}
       </Button>
+
       <Button onClick={handleNext} variant="outline">
         Next
       </Button>

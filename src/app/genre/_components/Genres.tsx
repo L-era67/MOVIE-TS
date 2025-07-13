@@ -7,14 +7,28 @@ import {
 
 import { ChevronDown } from "lucide-react";
 import { SearchGenres } from "./Allgenres";
+import { usePathname } from "next/navigation";
 
-export const Genre = ({ searchBtn }: { searchBtn?: Boolean }) => {
+type GenreType = {
+  searchBtn?: Boolean;
+};
+
+export const Genre = ({ searchBtn }: GenreType) => {
+  const pathName = usePathname();
+  console.log("pathName:", pathName);
+
+  //if()
+  //  const isOnGenrePage = pathName === "/genre";
+
+  const isOnGenrePage = pathName.includes("/genre");
+  console.log("ISONGENREPAGE:", isOnGenrePage);
+
+  // const isOnGenrePage = pathName.inclu
   return (
     <div>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <div>
-
             {!searchBtn && (
               <Button variant="outline">
                 Genre
@@ -26,12 +40,13 @@ export const Genre = ({ searchBtn }: { searchBtn?: Boolean }) => {
                 <ChevronDown />
               </Button>
             )}
-            
           </div>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-150 p-5 z-99">
-          <SearchGenres />
-        </DropdownMenuContent>
+        {!isOnGenrePage && (
+          <DropdownMenuContent className="w-100 md:w-120 lg:w-150 p-5 z-99">
+            <SearchGenres />
+          </DropdownMenuContent>
+        )}
       </DropdownMenu>
     </div>
   );
