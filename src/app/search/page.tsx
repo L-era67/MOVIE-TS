@@ -1,12 +1,6 @@
 "use client";
 
-import {
-  parseAsArrayOf,
-  parseAsIndex,
-  parseAsInteger,
-  parseAsString,
-  useQueryState,
-} from "nuqs";
+import { parseAsInteger, useQueryState } from "nuqs";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
@@ -39,7 +33,10 @@ export default function Page() {
       const input = await getSearch(search);
       console.log("SEARCH INPUTTT", input);
       setSearchData(input);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+      
+    }
   };
 
   useEffect(() => {

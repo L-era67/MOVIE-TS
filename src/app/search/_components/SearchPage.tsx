@@ -16,15 +16,14 @@ export const SearchPage = ({
   page,
   setPage,
 }: SearchPageProps) => {
-
-  if (!searchData || searchData?.results?.length == 0 ) {
+  if (!searchData || searchData?.results?.length == 0) {
     return (
       <div className="px-5 py-16 text-center text-gray-600 dark:text-gray-300">
         <div className="text-5xl mb-4">🔍</div>
         <h2 className="text-xl font-semibold">No results found</h2>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
           We couldn’t find anything for
-          <span className="font-bold"> "{search}"</span>.
+          <span className="font-bold"> &quot;{search}&quot;</span>.
         </p>
       </div>
     );
@@ -36,7 +35,7 @@ export const SearchPage = ({
     <div className="px-5 :pl-10 lg:px-20  2xl:pr-[250px]">
       <h1 className="text-[30px] font-semibold my-8">Search Results</h1>
       <p className="text-[20px] text-foreground font-semibold mb-8 ">
-        {total_results} results for "{search}"
+        {total_results} results for &quot;{search}&quot;
       </p>
 
       <div className="grid w-full grid-cols-2 sm:grid-cols-3 gap-5 md:hidden">
@@ -67,7 +66,6 @@ export const SearchPage = ({
         <div className="py-5 md:w-[35%]">
           <SearchGenres />
         </div>
-
       </div>
     </div>
   );

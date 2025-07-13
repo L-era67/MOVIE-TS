@@ -32,7 +32,8 @@ export const SearchInput = () => {
       const input = await getSearch(search);
       setSearchData(input);
     } catch (error) {
-      setSearchData(null);
+      console.log(error);
+      
     } finally {
       setLoading(false);
       // setTimeout(() => setLoading(false), 100);

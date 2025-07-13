@@ -10,7 +10,7 @@ import { SearchGenres } from "./Allgenres";
 import { usePathname } from "next/navigation";
 
 type GenreType = {
-  searchBtn?: Boolean;
+  searchBtn?: boolean;
 };
 
 export const Genre = ({ searchBtn }: GenreType) => {

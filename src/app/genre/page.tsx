@@ -3,8 +3,7 @@
 import { Pagination } from "@/components/Pagination";
 import { SearchGenres } from "./_components/Allgenres";
 import { MovieCard } from "@/components/MovieCard";
-// import { useRouter } from "next/router";
-import { useRouter, useSearchParams } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getFilteredGenre } from "@/utils/get-filtered-genre";
 import { MovieResponse } from "@/types";

@@ -1,6 +1,5 @@
 import { MovieCarousel } from "@/components/Home/MovieCarousel";
 import { Upcoming } from "@/components/Home/UpComing";
-import Image from "next/image";
 import { TopRated } from "@/components/Home/TopRated";
 import { Popular } from "@/components/Home/Popular";
 

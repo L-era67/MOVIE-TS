@@ -6,6 +6,7 @@ import { Footer } from "@/components/Footer";
 import { NuqsAdapter } from "nuqs/adapters/next";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
