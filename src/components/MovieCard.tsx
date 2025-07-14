@@ -19,7 +19,7 @@ export const MovieCard = ({ movie }: MovieCardProps) => {
         />
 
         <div className="p-[8px] ">
-          <div className="flex gap-[4px]">
+          <div className="flex gap-[4px] items-center">
             <StarIcon className="h-[16px] w-[16px] fill-yellow-300 text-yellow-300" />
 
             <div className="flex dark:text-white">
